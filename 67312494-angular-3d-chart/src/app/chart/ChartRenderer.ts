@@ -29,6 +29,7 @@ class ChartRenderer {
       this.rootScene.camera,
       this.renderer.domElement
     );
+    this.cameraControls.setPosition(0, 3, 3);
     this.tick();
   }
   get delta() {

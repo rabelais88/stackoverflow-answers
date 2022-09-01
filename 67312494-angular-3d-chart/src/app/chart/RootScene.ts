@@ -47,6 +47,7 @@ const gridData = data
     l: scaleZ.range([0, chartSize.z])(d.value),
     w: scaleBandX.bandwidth(),
     h: scaleBandY.bandwidth(),
+    color: d3.interpolateYlOrRd(scaleZ.range([0.2, 1])(d.value)),
   }));
 
 class RootScene {
@@ -63,10 +64,13 @@ class RootScene {
       1000
     );
     this.camera.position.z = 3;
+
     this.scene.add(this.camera);
     this.scene.add(new T.AmbientLight('white', 0.3));
-    const pointLight = new T.PointLight('white');
-    pointLight.position.z = 5;
+    const pointLight = new T.PointLight('white', 0.8);
+    pointLight.position.y = 5;
+    // const lightHelper = new T.PointLightHelper(pointLight);
+    // this.scene.add(lightHelper);
     this.scene.add(pointLight);
     this.scene.add(new T.AxesHelper());
     this.group = new T.Group();
@@ -85,7 +89,8 @@ class RootScene {
   }
   makeBar(d: typeof gridData[0]) {
     const geo = new T.BoxGeometry(d.w, d.l, d.h, 32, 32);
-    const mat = new T.MeshPhysicalMaterial({ color: 'red' });
+    const color = new T.Color(d.color);
+    const mat = new T.MeshPhysicalMaterial({ color });
     const mesh = new T.Mesh(geo, mat);
     mesh.position.x = d.x;
     mesh.position.z = d.y;
