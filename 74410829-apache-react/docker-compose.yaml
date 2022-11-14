@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  react-frontend:
+    build:
+      context: ./react-frontend
+      dockerfile: dockerfile
+    ports:
+      - 3000:3000
+  apache-httpd:
+    build:
+      context: ./httpd
+      dockerfile: dockerfile
+    ports:
+      - 8080:80

@@ -1,0 +1,10 @@
+FROM node:18
+RUN curl -fsSL "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" -o /bin/pnpm; chmod +x /bin/pnpm;
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+COPY package*.json tsconfig.json ./
+RUN pnpm fetch
+ADD . ./
+RUN pnpm install
+RUN pnpm build
+CMD pnpm start
