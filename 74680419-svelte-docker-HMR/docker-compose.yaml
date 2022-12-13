@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  svelte:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8080:5173"
+    volumes:
+      # - ./:/home/node/app
+      - ./src:/home/node/app/src
+      - ./static:/home/node/app/static
+      - ./vite.config.js:/home/node/app/vite.config.js
+      - ./tsconfig.json:/home/node/app/tsconfig.json
+      - ./svelte.config.js:/home/node/app/svelte.config.js
+    command: pnpm dev
+    environment:
+      - PORT=5173
+      - HOST=0.0.0.0

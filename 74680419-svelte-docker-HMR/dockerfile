@@ -1,0 +1,10 @@
+FROM node:18-alpine
+# FROM node:18-bullseye
+RUN npm install -g pnpm
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+COPY package*.json pnpm-lock.yaml ./
+RUN pnpm install
+ENV HOST=0.0.0.0
+EXPOSE 5173:5173
+# CMD pnpm dev
