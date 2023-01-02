@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>combobox</h1>
+    <p>{{ select }}</p>
     <v-combobox
       v-model:search="keyword"
       v-model="select"

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>autocomplete</h1>
+    <p>{{ select }}</p>
     <v-autocomplete
       v-model:search="keyword"
       v-model="select"
