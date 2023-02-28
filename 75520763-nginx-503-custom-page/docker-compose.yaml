@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  proxy:
+    image: nginx:1.23.3-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/custom-503.conf:ro
+      - ./custom_error.html:/usr/share/nginx/html/custom_error.html
+    ports:
+      - 80:80
